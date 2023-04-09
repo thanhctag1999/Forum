@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Forum.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lý báo cáo</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Id bài viết
+        </th>
+        <th>
+            Tên bài viết
+        </th>
+        <th>
+            Tên người dùng
+        </th>
+        <th>
+            Vai trò
+        </th>
+        <th>
+           Số điện thoại
+        </th>
+        <th>
+            Ngày tạo
+        </th>
+        <th>
+            Bình luận
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Post.id_post)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Post2.post_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User1.role_detail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User2.user_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.content_comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @using (Html.BeginForm("Approve", "Comments", new { id = item.id_comment }))
+            {
+                @Html.AntiForgeryToken()
+
+                <input type="submit" value="Cho phép" class="btn btn-default btn_approve" , new { onclick="return confirm('Approved!');" } />
+            }
+        </td>
+        <td>
+            @using (Html.BeginForm("Reject", "Comments", new { id = item.id_comment }))
+            {
+                @Html.AntiForgeryToken()
+
+                <input type="submit" value="Ẩn bình luận" class="btn btn-default btn_reject" , new { onclick="return confirm('Are sure wants to Reject?');" } />
+
+            }
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_comment }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_comment }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_comment })
+        </td>*@
+    </tr>
+}
+
+</table>

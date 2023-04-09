@@ -1,0 +1,144 @@
+﻿@model Forum.Models.User
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/assets/css/profile/jquery-confirm.min.css">
+<link rel="stylesheet" href="~/assets/css/profile/profile.css">
+
+<section class="contact-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="down-contact">
+                    <div class="row">
+                        <div class="profile-left" style="display:none">
+                            <div class="sidebar-item contact-form">
+                                <div class="sidebar-heading" style="margin-bottom: 2%;">
+                                    <h2>Chỉnh sửa thông tin cá nhân</h2>
+                                </div>
+                                <div class="content">
+                                    @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { onsubmit = "return mySubmitFunction(event)" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <fieldset>
+                                                <h3>Tên người dùng</h3>
+                                                <input style="text-transform: none; margin-bottom: 0.5rem" name="name" value="@Html.DisplayFor(model => model.name)" type="text" id="name_profile" placeholder="name">
+                                                <div class="form-message"></div>
+                                            </fieldset>
+                                        </div>
+                                        <input name="pass" type="hidden" value="@Html.DisplayTextFor(model => model.pass)">
+                                        <input name="flag" type="hidden" value="@Html.DisplayTextFor(model => model.flag)">
+                                        <input name="role_detail" type="hidden" value="@Html.DisplayTextFor(model => model.role_detail)">
+                                        <div class="col-sm-12">
+                                            <fieldset>
+                                                <button type="submit" id="form-submit" class="main-button">Cập nhật</button>
+                                                <button type="button" onclick="cancelEditProfile()" id="cancel_edit_profile"> Hủy </button>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 profile-right">
+                            <div class="sidebar-item contact-information">
+                                <div class="sidebar-heading">
+                                    <h2>Thông tin cá nhân</h2>
+                                </div>
+                                @if (Session["user-name"] != null)
+                                {
+                                    <div class="content">
+                                        <ul>
+                                            <li>
+                                                <h5>
+                                                    Tên người dùng
+                                                </h5>
+                                                <span>
+                                                    @Session["user-name"]
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <h5>Số điện thoại</h5>
+                                                <span>
+                                                    @Session["user-username"]
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <h5>Khu vực</h5>
+                                                <span>
+                                                    @Session["user-area"]
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <h5>Role</h5>
+                                                <span>
+                                                    @if (Session["user-roledetail"].Equals("Nhà Doanh Nghi?p"))
+                                                    {
+                                                        <p>Nhà Doanh Nghiệp</p>
+                                                    }
+                                                    else if (Session["user-roledetail"].Equals("Nhà Khoa H?c"))
+                                                    {
+                                                        <p>Nhà Khoa Học</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        @Session["user-roledetail"]
+                                                    }
+                                                </span>
+                                            </li>
+                                            <li>
+                                                @if (Session["user-username"].Equals(HttpContext.Current.Session["user_name"]))
+                                                {
+                                                    <button class="col-12 btn btn-primary" onclick="show_edit_profile()">Chỉnh sửa thông tin</button>
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="content">
+                                        <ul>
+                                            <li>
+                                                <h5>
+                                                    Số điện thoại
+                                                </h5>
+                                                <span>
+                                                    @Html.DisplayFor(model => model.user_name)
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <h5>Tên người dùng</h5>
+                                                <span>
+                                                    @Html.DisplayFor(model => model.name)
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <h5>Role</h5>
+                                                <span>
+                                                    @Html.DisplayFor(model => model.role_detail)
+                                                </span>
+                                            </li>
+                                            <li>
+                                                @if (Session["user-name"] == @Html.DisplayFor(model => model.user_name))
+                                                {
+                                                    <button class="col-12 btn btn-primary" onclick="show_edit_profile()">Chỉnh sửa thông tin</button>
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

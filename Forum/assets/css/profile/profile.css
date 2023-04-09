@@ -1,0 +1,64 @@
+﻿#form-submit {
+    background: #0069D9;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+    margin-right: 0.2rem;
+}
+#cancel_edit_profile {
+    color: white;
+    background: #dc3545;
+    cursor: pointer;
+    border-radius: 5px;
+}
+    #cancel_edit_profile:hover {
+        background-color: #dc3545 !important;
+    }
+    #form-submit:hover {
+        background-color: #0069D9 !important;
+    }
+
+@media only screen and (min-width: 580px) {
+    .jconfirm .jconfirm-box{
+        position: relative;
+        left:-10%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .jconfirm .jconfirm-box {
+        position: relative;
+        left: -40%;
+    }
+}
+
+@media only screen and (min-width: 990px) {
+    .jconfirm .jconfirm-box {
+        position: relative;
+        left: 0;
+    }
+    .profile-right {
+        padding-right: 6rem;
+    }
+}
+
+@media only screen and (max-width: 990px) and (min-width: 768px) {
+
+    .profile-right {
+        padding-right: 6rem;
+    }
+}
+.form-message {
+    display: none;
+    width: 100%;
+    margin: 0 auto;
+    margin-left: 0.5rem;
+}
+.form-message p {
+    color: red;
+}
+
+
+
+

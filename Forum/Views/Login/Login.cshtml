@@ -1,0 +1,135 @@
+﻿@model Forum.Models.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/assets/images/logo_forum.jpg" />
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <title>Đăng nhập</title>
+</head>
+<body>
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="wrapper">
+            <div class="logo">
+                <img src="~/assets/images/logo.png">
+            </div>
+            <div class="text-center mt-4 name Maintitle">
+                Login
+            </div>
+            <form class="p-3 mt-3" id="login" runat="server">
+                <div class="form-field d-flex align-items-center">
+                    @Html.TextBoxFor(m => m.user_name, "", new { @class = "form-control", @placeholder = "Số điện thoại", @autocomplete = "off" })
+                </div>
+                <div class="form-field password-form">
+                    @Html.PasswordFor(m => m.pass, new { @id = "password", @class = "form-control", @placeholder = "Mật khẩu", @autocomplete = "off" })
+                    <img id="eye" src="https://screenshots.imgix.net/mui-org/material-ui-icons/remove-red-eye-outlined/~v=3.9.2/7ff4c952-323e-434b-99eb-df635c07a039.png?ixlib=js-1.2.0&s=235069ea692376847c4ea542261ca39f" />
+                </div>
+                <div id="message">
+                    <p>Mật khẩu phải có chứa:</p>
+                    <p id="letter" class="invalid">A <b>Kí tự viết thường</b> letter</p>
+                    <p id="capital" class="invalid">A <b>Kí tự viết hoa</b> letter</p>
+                    <p id="number" class="invalid">A <b>số</b></p>
+                    <p id="length" class="invalid">Ít nhất <b>8 kí tự</b></p>
+                </div>
+                <button class="btn mt-3 btn_login" runat="server">Đăng nhập</button>
+            </form>
+            <div class="text-center fs-6">
+                <p class="sub_footer-title">Bạn chưa có tài khoản? <a class="sub_footer-link">@Html.ActionLink("Đăng ký", "Register", "Register")</a></p>
+            </div>
+        </div>
+    }
+    @if (TempData["Deleted"] != null)
+    {
+        <script>alert('Your account is deleted')</script>
+    }
+    @if (TempData["Invalid"] != null)
+    {
+        <script>alert('Username or Password is Invalid')</script>
+    }
+    @if (TempData["Login"] != null)
+    {
+        <script>alert('Please Login and continues')</script>
+    }
+    <script>
+        var myInput = document.getElementById("pwd");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var length = document.getElementById("length");
+
+        // When the user clicks on the password field, show the message box
+        myInput.onfocus = function () {
+            document.getElementById("message").style.display = "block";
+        }
+
+        // When the user clicks outside of the password field, hide the message box
+        myInput.onblur = function () {
+            document.getElementById("message").style.display = "none";
+        }
+
+        // When the user starts to type something inside the password field
+        myInput.onkeyup = function () {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if (myInput.value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInput.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInput.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // Validate length
+            if (myInput.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+        }
+    </script>
+    <script>
+        document.getElementById('eye').addEventListener("click", showPassword);
+
+        function showPassword() {
+            let type = document.getElementById("password").type;
+            if (type === 'text') {
+                document.getElementById("password").type = 'password';
+            }
+            else {
+                document.getElementById("password").type = 'text';
+            }
+        }
+    </script>
+</body>
+</html>

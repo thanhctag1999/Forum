@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="TemplateMo">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/assets/css/templatemo-stand-blog.css">
+    <link rel="stylesheet" href="~/assets/css/owl.css">
+    <link rel="stylesheet" href="~/assets/css/layout.css">
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#editor',
+        });
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Additional Scripts -->
+    <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/js/owl.js"></script>
+    <script src="~/assets/js/slick.js"></script>
+    <script src="~/assets/js/isotope.js"></script>
+    <script src="~/assets/js/accordions.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+    <header class="headerpage">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container logopage">
+                <a class="navbar-brand" href="/">
+                    <img class="logo" src="https://cdn.freebiesupply.com/images/large/2x/blogger-logo-transparent.png" />
+                    <h2>Stand Blog<em>.</em></h2>
+                </a>
+                <button class="btn login-btn" onclick="onNavLogin()">Login</button>
+            </div>
+        </nav>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+        <div class="create-post" onclick="openModalAdd">
+            <button type="button" data-toggle="modal" data-target="#exampleModal">
+                <img src="https://icon-library.com/images/plus-icon-png/plus-icon-png-20.jpg" />
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create New Post</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="container-form">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-10">
+                                        <div class="form-group">
+                                            <label for="name">Name Topic</label>
+                                            <input type="text" class="form-control" id="name" placeholder="Your name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Describe the condition in detail</label>
+                                            <textarea id="editor"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-modal" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary btn-modal">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text">
+                            <p>
+                                Copyright 2022 Stand Blog Co. | Design:
+                                <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script language="text/Javascript">
+        cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+        function clearField(t) {
+            //declaring the array outside of the
+            if (!cleared[t.id]) {
+                // function makes it static and global
+                cleared[t.id] = 1; // you could use true and false, but that's more typing
+                t.value = ""; // with more chance of typos
+                t.style.color = "#fff";
+            }
+        }
+    </script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#editor',
+            menubar: false,
+            statusbar: false,
+            plugins: 'autoresize anchor autolink charmap code codesample directionality fullpage help hr image imagetools insertdatetime link lists media nonbreaking pagebreak preview print searchreplace table template textpattern toc visualblocks visualchars',
+            toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help fullscreen ',
+            skin: 'bootstrap',
+            toolbar_drawer: 'floating',
+            min_height: 200,
+            autoresize_bottom_margin: 16,
+            setup: (editor) => {
+                editor.on('init', () => {
+                    editor.getContainer().style.transition = "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out"
+                });
+                editor.on('focus', () => {
+                    editor.getContainer().style.boxShadow = "0 0 0 .2rem rgba(0, 123, 255, .25)",
+                        editor.getContainer().style.borderColor = "#80bdff"
+                });
+                editor.on('blur', () => {
+                    editor.getContainer().style.boxShadow = "",
+                        editor.getContainer().style.borderColor = ""
+                });
+            }
+        });
+    </script>
+    <script>
+        function onNavLogin() {
+            console.log('aoaoaoa');
+            window.location.href = "/Login/Login";
+        }
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

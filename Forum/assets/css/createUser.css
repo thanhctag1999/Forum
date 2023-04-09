@@ -1,0 +1,103 @@
+﻿body {
+    margin-top: 20px;
+    background: #f6f9fc;
+}
+
+.account-block {
+    padding: 0;
+    background-image: url(https://bootdey.com/img/Content/bg1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+}
+
+    .account-block .overlay {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .account-block .account-testimonial {
+        text-align: center;
+        color: #fff;
+        position: absolute;
+        margin: 0 auto;
+        padding: 0 1.75rem;
+        bottom: 3rem;
+        left: 0;
+        right: 0;
+    }
+
+.text-theme {
+    color: #5369f8 !important;
+}
+
+.btn-theme {
+    background-color: #5369f8;
+    border-color: #5369f8;
+    color: #fff;
+}
+
+.icon-checkbox {
+    width: 30px !important;
+    margin-left: 15px !important;
+    margin-top: 5px !important;
+}
+
+@media only screen and (max-width: 991px) {
+    col-lg-6 d-none d-lg-inline-block pt-5 {
+        width: 100% !important;
+        display: block !important;
+    }
+}
+
+.btn-BackToList {
+    display: flex;
+    justify-content: end;
+}
+
+.form-group label {
+    display: block;
+}
+
+
+    .formgroup input {
+        margin-left: 10px;
+        margin-top: -7px;
+    }
+
+.form-group img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.container-edit {
+    width: 100% !important;
+
+}
+
+.check-box {
+    margin-right: 417px;
+}
+
+.form-group input{
+    max-width: 100%;
+    padding-left: 15px;
+}
+.formgrp-isadmin label {
+    font-size: 20px;
+}
+.btn-success {
+    color: #fff;
+    background-color: #4f65ff;
+    border: none;
+}

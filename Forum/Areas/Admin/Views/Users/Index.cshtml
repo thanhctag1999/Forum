@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Forum.Models.User>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<p style="margin-top:60px">
+    @Html.ActionLink("Thêm người dùng", "Create", "", htmlAttributes: new { @class = "btn btn-primary" })
+</p>
+
+<h4 style="color:red">@Session["Message"]</h4>
+<table class="table" style="margin-top:40px">
+    <thead>
+        <tr>
+            <th>
+                Tên tài khoản
+            </th>
+            <th>
+                Admin
+            </th>
+            <th>
+                Tên người dùng
+            </th>
+            <th>
+                Role
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Xử lý
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <input type="hidden" value="@item.id_user" id="id_user" />
+
+            <td class="td" style=" line-height: 3;">
+                @Html.DisplayFor(modelItem => item.user_name)
+            </td>
+            <td class="td" style=" line-height: 3;">
+                @Html.DisplayFor(modelItem => item.role)
+            </td>
+            <td class="td" style=" line-height: 3;">
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td class="td" style=" line-height: 3;">
+                @Html.DisplayFor(modelItem => item.role_detail)
+            </td>
+            <td class="td" style=" line-height: 3;">
+                @if (item.flag == false)
+                {
+                    <p style=" padding-top: 4px;color: #019774">Hoạt động</p>
+                }
+                else
+                {
+                    <p style=" padding-top: 4px;color: #f71f1f">Đã xóa</p>
+                }
+            </td>
+
+            <td style=" line-height: 3;">
+
+
+
+
+                @using (Html.BeginForm("Delete", "Users", new { id = item.id_user }))
+                {
+                    @Html.AntiForgeryToken()
+                    if (item.flag == false)
+                    {
+                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.id_user }, htmlAttributes: new { @class = "btn btn-primary" })
+                        <input type="submit" value="Xóa" class="btn btn-danger" , new { onclick="return confirm('Bạn chắc chắn muốn xóa?');" } />
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.id_user }, htmlAttributes: new { @class = "btn btn-primary disabled" })
+                        <input type="submit" value="Xóa" class="btn btn-danger" , new { onclick="return confirm('Bạn chắc chắn muốn xóa?');" } disabled />
+                    }
+
+
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+

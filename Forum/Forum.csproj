@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AF820BAB-044B-4ABD-9D3E-F8C0A958030F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Forum</RootNamespace>
+    <AssemblyName>Forum</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44313</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TopicsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Views\Interface1.cs" />
+    <Compile Include="Common\Encryption.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\ForumDB.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\RegisterUser.cs" />
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\Topic.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\createUser.css" />
+    <Content Include="assets\css\flex-slider.css" />
+    <Content Include="assets\css\fontawesome.css" />
+    <Content Include="assets\css\layout.css" />
+    <Content Include="assets\css\nucleo-icons.css" />
+    <Content Include="assets\css\nucleo-svg.css" />
+    <Content Include="assets\css\owl.css" />
+    <Content Include="assets\css\profile.css" />
+    <Content Include="assets\css\profile\jquery-confirm.min.css" />
+    <Content Include="assets\css\profile\profile.css" />
+    <Content Include="assets\css\soft-ui-dashboard.css" />
+    <Content Include="assets\css\soft-ui-dashboard.min.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\templatemo-stand-blog.css" />
+    <Content Include="assets\fonts\flexslider-icon.svg" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\nucleo-icons.svg" />
+    <Content Include="assets\fonts\slick.svg" />
+    <Content Include="assets\images\1.jpg" />
+    <Content Include="assets\images\about-us.jpg" />
+    <Content Include="assets\images\apple-icon.png" />
+    <Content Include="assets\images\banner-item-01.jpg" />
+    <Content Include="assets\images\banner-item-02.jpg" />
+    <Content Include="assets\images\banner-item-03.jpg" />
+    <Content Include="assets\images\banner-item-04.jpg" />
+    <Content Include="assets\images\banner-item-05.jpg" />
+    <Content Include="assets\images\banner-item-06.jpg" />
+    <Content Include="assets\images\bg1.jpg" />
+    <Content Include="assets\images\blog-post-01.jpg" />
+    <Content Include="assets\images\blog-post-02.jpg" />
+    <Content Include="assets\images\blog-post-03.jpg" />
+    <Content Include="assets\images\blog-thumb-01.jpg" />
+    <Content Include="assets\images\blog-thumb-02.jpg" />
+    <Content Include="assets\images\blog-thumb-03.jpg" />
+    <Content Include="assets\images\blog-thumb-04.jpg" />
+    <Content Include="assets\images\blog-thumb-05.jpg" />
+    <Content Include="assets\images\blog-thumb-06.jpg" />
+    <Content Include="assets\images\bruce-mars.jpg" />
+    <Content Include="assets\images\comment-author-01.jpg" />
+    <Content Include="assets\images\comment-author-02.jpg" />
+    <Content Include="assets\images\comment-author-03.jpg" />
+    <Content Include="assets\images\cta-bg.jpg" />
+    <Content Include="assets\images\curved-images\curved-10.jpg" />
+    <Content Include="assets\images\curved-images\curved-11.jpg" />
+    <Content Include="assets\images\curved-images\curved-6.jpg" />
+    <Content Include="assets\images\curved-images\curved-8.jpg" />
+    <Content Include="assets\images\curved-images\curved0.jpg" />
+    <Content Include="assets\images\curved-images\curved1.jpg" />
+    <Content Include="assets\images\curved-images\curved10.jpg" />
+    <Content Include="assets\images\curved-images\curved11-small.jpg" />
+    <Content Include="assets\images\curved-images\curved11.jpg" />
+    <Content Include="assets\images\curved-images\curved12.jpg" />
+    <Content Include="assets\images\curved-images\curved13.jpg" />
+    <Content Include="assets\images\curved-images\curved14.jpg" />
+    <Content Include="assets\images\curved-images\curved19.jpg" />
+    <Content Include="assets\images\curved-images\curved2.jpg" />
+    <Content Include="assets\images\curved-images\curved21.jpg" />
+    <Content Include="assets\images\curved-images\curved3.jpg" />
+    <Content Include="assets\images\curved-images\curved4.jpg" />
+    <Content Include="assets\images\curved-images\curved5-small.jpg" />
+    <Content Include="assets\images\curved-images\curved5.jpg" />
+    <Content Include="assets\images\curved-images\curved6-small.jpg" />
+    <Content Include="assets\images\curved-images\curved6.jpg" />
+    <Content Include="assets\images\curved-images\curved7.jpg" />
+    <Content Include="assets\images\curved-images\curved8.jpg" />
+    <Content Include="assets\images\curved-images\curved9.jpg" />
+    <Content Include="assets\images\curved-images\white-curved.jpg" />
+    <Content Include="assets\images\down-arrow-dark.svg" />
+    <Content Include="assets\images\heading-bg.jpg" />
+    <Content Include="assets\images\illustrations\rocket-dark.png" />
+    <Content Include="assets\images\illustrations\rocket-white.png" />
+    <Content Include="assets\images\logos\mastercard.png" />
+    <Content Include="assets\images\logos\visa.png" />
+    <Content Include="assets\images\shapes\pattern-lines.svg" />
+    <Content Include="assets\images\shapes\shape-1.svg" />
+    <Content Include="assets\images\shapes\shape-2.svg" />
+    <Content Include="assets\images\shapes\shape-3.svg" />
+    <Content Include="assets\images\shapes\wave-down.svg" />
+    <Content Include="assets\images\shapes\wave-up.svg" />
+    <Content Include="assets\images\shapes\waves-gray.svg" />
+    <Content Include="assets\images\shapes\waves-white.svg" />
+    <Content Include="assets\images\small-logos\icon-sun-cloud.png" />
+    <Content Include="assets\images\small-logos\logo-atlassian.svg" />
+    <Content Include="assets\images\small-logos\logo-invision.svg" />
+    <Content Include="assets\images\small-logos\logo-jira.svg" />
+    <Content Include="assets\images\small-logos\logo-slack.svg" />
+    <Content Include="assets\images\small-logos\logo-spotify.svg" />
+    <Content Include="assets\images\small-logos\logo-webdev.svg" />
+    <Content Include="assets\images\small-logos\logo-xd.svg" />
+    <Content Include="assets\images\theme\angular.jpg" />
+    <Content Include="assets\images\theme\bootstrap.jpg" />
+    <Content Include="assets\images\theme\dribbble.png" />
+    <Content Include="assets\images\theme\dropbox.png" />
+    <Content Include="assets\images\theme\mastercard.png" />
+    <Content Include="assets\images\theme\paypal.png" />
+    <Content Include="assets\images\theme\react.jpg" />
+    <Content Include="assets\images\theme\sketch.jpg" />
+    <Content Include="assets\images\theme\slack.png" />
+    <Content Include="assets\images\theme\spotify.jpeg" />
+    <Content Include="assets\images\theme\tim.png" />
+    <Content Include="assets\images\theme\unass.jpg" />
+    <Content Include="assets\images\theme\visa.png" />
+    <Content Include="assets\images\theme\vue.jpg" />
+    <Content Include="assets\js\accordions.js" />
+    <Content Include="assets\js\core\bootstrap.bundle.min.js" />
+    <Content Include="assets\js\core\bootstrap.min.js" />
+    <Content Include="assets\js\core\popper.min.js" />
+    <Content Include="assets\js\custom.js" />
+    <Content Include="assets\js\isotope.js" />
+    <Content Include="assets\js\owl.js" />
+    <Content Include="assets\js\plugins\bootstrap-notify.js" />
+    <Content Include="assets\js\plugins\Chart.extension.js" />
+    <Content Include="assets\js\plugins\chartjs.min.js" />
+    <Content Include="assets\js\plugins\perfect-scrollbar.min.js" />
+    <Content Include="assets\js\plugins\smooth-scrollbar.min.js" />
+    <Content Include="assets\js\profile.js" />
+    <Content Include="assets\js\profile\jquery-confirm.min.js" />
+    <Content Include="assets\js\profile\profile.js" />
+    <Content Include="assets\js\slick.js" />
+    <Content Include="assets\js\soft-ui-dashboard.js" />
+    <Content Include="assets\js\soft-ui-dashboard.min.js" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Forum.dll" />
+    <Content Include="bin\Forum.pdb" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\Microsoft.Win32.Primitives.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Console.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.Globalization.Calendars.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.ZipFile.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Net.Http.dll" />
+    <Content Include="bin\roslyn\System.Net.Sockets.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\roslyn\System.ValueTuple.dll" />
+    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
+    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="assets\fonts\Flaticon.woff" />
+    <Content Include="assets\fonts\flexslider-icon.eot" />
+    <Content Include="assets\fonts\flexslider-icon.ttf" />
+    <Content Include="assets\fonts\flexslider-icon.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\fonts\slick.eot" />
+    <Content Include="assets\fonts\slick.ttf" />
+    <Content Include="assets\fonts\slick.woff" />
+    <Content Include="Areas\Admin\Views\Shared\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Topics\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Topics\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Topics\Index.cshtml" />
+    <Content Include="bin\Forum.dll.config" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="assets\scss\soft-ui-dashboard.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\bootstrap-grid.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\bootstrap-utilities.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\bootstrap.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\forms\_floating-labels.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\forms\_form-check.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\forms\_form-control.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\forms\_form-range.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\forms\_form-select.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\forms\_form-text.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\forms\_input-group.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\forms\_labels.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\forms\_validation.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_clearfix.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_color-bg.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_colored-links.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_position.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_ratio.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_stacks.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_stretched-link.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_text-truncation.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_visually-hidden.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\helpers\_vr.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_alert.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_backdrop.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_buttons.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_caret.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_color-scheme.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_container.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_deprecate.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_forms.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_gradients.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_grid.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_image.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_list-group.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_lists.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_pagination.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_resize.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_table-variants.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_transition.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_utilities.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\mixins\_visually-hidden.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\utilities\_api.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\vendor\_rfs.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_accordion.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_alert.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_badge.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_breadcrumb.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_button-group.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_buttons.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_card.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_carousel.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_close.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_containers.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_dropdown.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_forms.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_functions.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_grid.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_helpers.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_images.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_list-group.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_maps.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_mixins.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_modal.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_nav.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_navbar.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_offcanvas.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_pagination.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_placeholders.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_popover.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_progress.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_reboot.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_root.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_spinners.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_tables.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_toasts.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_tooltip.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_transitions.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_type.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_utilities.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\bootstrap\_variables.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\cards\card-background.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\custom\_styles.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\custom\_variables.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\forms\_form-check.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\forms\_form-select.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\forms\_form-switch.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\forms\_forms.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\forms\_input-group.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\forms\_inputs.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\forms\_labels.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\mixins\mixins.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\mixins\_badge.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\mixins\_colored-shadows.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\mixins\_hover.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\mixins\_social-buttons.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\plugins\free\plugins.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\plugins\free\_flatpickr.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\plugins\free\_nouislider.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\plugins\free\_perfect-scrollbar.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\plugins\free\_prism.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\theme.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_animations.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_avatars.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_badge.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_breadcrumb.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_cards-extend.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_cards.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_choices.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_dark-version.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_dropdowns.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_fixed-plugin.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_form-switch.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_full-calendar.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_header.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_info-areas.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_misc-extend.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_misc.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_navbar-vertical.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_navbar.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_pagination.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_rtl.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_social-buttons.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_table.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_timeline.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_utilities-extend.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_utilities.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\variables\_virtual-reality.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_alert.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_avatars.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_badge.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_breadcrumbs.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_buttons.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_cards.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_dark-version.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_dropdown.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_dropup.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_fixed-plugin.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_footer.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_forms.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_gradients.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_header.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_info-areas.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_misc.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_nav.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_navbar-vertical.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_navbar.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_pagination.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_popovers.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_progress.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_rtl.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_social-buttons.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_tables.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_tilt.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_timeline.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_tooltips.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_typography.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_utilities-extend.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_utilities.scss" />
+    <Content Include="assets\scss\soft-ui-dashboard\_variables.scss" />
+    <Content Include="assets\css\soft-ui-dashboard.css.map" />
+    <Content Include="assets\fonts\nucleo.woff2" />
+    <Content Include="assets\fonts\nucleo.woff" />
+    <Content Include="assets\fonts\nucleo.ttf" />
+    <Content Include="assets\fonts\nucleo.eot" />
+    <Content Include="assets\fonts\nucleo-icons.woff2" />
+    <Content Include="assets\fonts\nucleo-icons.woff" />
+    <Content Include="assets\fonts\nucleo-icons.ttf" />
+    <Content Include="assets\fonts\nucleo-icons.eot" />
+    <Content Include="assets\js\soft-ui-dashboard.js.map" />
+    <Content Include="obj\Release\Forum.csproj.AssemblyReference.cache" />
+    <Content Include=".vs\Forum\FileContentIndex\13c63f38-41a3-4911-8f42-3c7b540f9c92.vsidx" />
+    <Content Include=".vs\Forum\FileContentIndex\5f2a9c0d-58e9-4548-a5a5-494acd62d8f7.vsidx" />
+    <Content Include=".vs\Forum\FileContentIndex\a51aee77-7a3c-4574-a382-3ba55aaa5326.vsidx" />
+    <Content Include=".vs\Forum\FileContentIndex\read.lock" />
+    <Content Include=".vs\Forum\v17\.suo" />
+    <Content Include=".vs\slnx.sqlite" />
+    <Content Include=".vs\VSWorkspaceState.json" />
+    <Content Include="Areas\Admin\Views\Comments\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="vendor\jquery\jquery.min.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\Profile\Create.cshtml" />
+    <Content Include="Views\Profile\Delete.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Post\Post.cshtml" />
+    <Content Include="Views\ChangePassword\ChangePassword.cshtml" />
+    <Content Include="Web.Config" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Blog\Create.cshtml" />
+    <Content Include="Views\Blog\Delete.cshtml" />
+    <Content Include="Views\Blog\Details.cshtml" />
+    <Content Include="Views\Blog\Edit.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Project\Delete.cshtml" />
+    <Content Include="Views\Project\Details.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <None Include="Web.Debug.Config">
+      <DependentUpon>Web.Config</DependentUpon>
+    </None>
+    <None Include="Web.Release.Config">
+      <DependentUpon>Web.Config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".vs\Forum\FileContentIndex\merges\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50195</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44313/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

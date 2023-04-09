@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="TemplateMo">
+    <title>Diễn đàn nông nghiệp</title>
+    <link rel="icon" href="~/assets/images/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/assets/css/templatemo-stand-blog.css">
+    <link rel="stylesheet" href="~/assets/css/owl.css">
+    <link rel="stylesheet" href="~/assets/css/layout.css">
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Additional Scripts -->
+    <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/js/owl.js"></script>
+    <script src="~/assets/js/slick.js"></script>
+    <script src="~/assets/js/isotope.js"></script>
+    <script src="~/assets/js/accordions.js"></script>
+
+    @Styles.Render("~/asset/css")
+
+
+</head>
+<body>
+    <header class="headerpage">
+        <a class="navbar-brand" href="/">
+            <img class="logo" src="~/assets/images/logo.png" />
+        </a>
+        <a class="navbar-brand" href="/">
+            <h3>Diễn đàn nông nghiệp</h3>
+        </a>
+        <a class="navbar-brand" href="/project">
+            <h3>Dự án doanh nghiệp</h3>
+        </a>
+        <a class="navbar-brand" href="/blog">
+            <h3>Bài viết khoa học</h3>
+        </a>
+        <div class="header-right">
+            <button class="btn login-btn">
+                @Html.ActionLink("Đăng bài", "Post", "Post")
+            </button>
+            @if (Session["role"] == null)
+            {
+                <button class="btn login-btn" onclick="onNavLogin()">Đăng nhập</button>
+            }
+            @if (Session["role"] != null)
+            {
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">@HttpContext.Current.Session["name"]</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="/Profile/Detail/@Session["id-user"]">Thông tin cá nhân</a>
+                        <a href="/ChangePassword/ChangePassword">Đổi mật khẩu</a>
+                        @if (Session["role"].ToString() == "True")
+                        {
+                            <a href="/Admin/Posts">Quản lý Bài Viết</a>
+                            <a href="/Admin/Users">Quản lý Tài Khoản</a>
+                            <a href="/Admin/Topics">Quản lý Đề Tài</a>
+                            <a href="/Admin/Comments">Quản lý báo cáo</a>
+                        }
+                        @Html.ActionLink("Đăng xuất", "LogOut", "Login")
+                    </div>
+                </div>
+            }
+        </div>
+    </header>
+    <div class="container body-content">
+        <div class="body-container">
+            @RenderBody()
+        </div>
+    </div>
+    <script language="text/Javascript">
+        cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+        function clearField(t) {
+            //declaring the array outside of the
+            if (!cleared[t.id]) {
+                // function makes it static and global
+                cleared[t.id] = 1; // you could use true and false, but that's more typing
+                t.value = ""; // with more chance of typos
+                t.style.color = "#fff";
+            }
+        }
+    </script>
+    <script>
+        function onNavLogin() {
+            window.location.href = "/Login/Login";
+        }
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="~/assets/js/profile/profile.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+</body>
+</html>

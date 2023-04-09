@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Forum.Models.Topic>
+
+@{
+    ViewBag.Title = "List Topics";
+
+    int index = 0;
+}
+
+<div class="list-topics mb-5">
+    <h2>Đề tài</h2>
+    <p class="my-3">
+        @Html.ActionLink("Thêm đề tài", "Create", new object { }, new { @class = "btn btn-primary" })
+    </p>
+    @if (@TempData["Message"] != null)
+    {
+        <div class="alert alert-danger">
+            @Html.Raw(TempData["Message"])
+        </div>
+    }
+    <table class="table table-vertical-center">
+        <tr>
+            <td>
+                Stt
+            </td>
+            <th>
+                Tên đề tài
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th class="col-md-2">
+                Xử lý
+            </th>
+            <th class="col-md-2">
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="@(item.flag == 0 ? "text-secondary font-italic" : "")">
+                <td>
+                    @(index+1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.topic_name)
+                </td>
+                <td>
+                    @(item.flag == 1 ? "Hoạt động" : "Đã xóa")
+                </td>
+                <td class="@(item.flag == 0 ? "" : "")">
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.id_topic }, new { @class = "btn btn-primary mr-2" })
+                </td>
+                <td class="@(item.flag == 0 ? "" : "")">
+                    <button class="btn btn-danger" data-item-id="@item.id_topic" data-item-name="@item.topic_name" data-toggle="modal" data-target="#confirm-delete" @(item.flag == 0 ? "disabled" : "")>Xóa</button>
+                </td>
+            </tr>
+            index++;
+        }
+    </table>
+</div>
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete topic <span class="topic_name font-weight-bold"></span>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Delete", "Topics"))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" class="id_topic" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+            var data = $(e.relatedTarget).data();
+            
+            $('.topic_name').text(data.itemName);
+            $('input.id_topic').val(data.itemId);
+        });
+        var confirmDelete = document.getElementById('confirm-delete')
+        confirmDelete.addEventListener('show.bs.modal', function (event) {
+            console.log("Da chay confirm-delete!!!")
+            var button = event.relatedTarget
+
+            var itemId = button.getAttribute('data-item-id')
+            var itemName = button.getAttribute('data-item-name')
+            var topicName = exampleModal.querySelector('.topic_name')
+            var topicId = exampleModal.querySelector('input.id_topic')
+
+            topicId.value = itemId
+            topicName.textContent = itemName
+        })
+    </script>
+}

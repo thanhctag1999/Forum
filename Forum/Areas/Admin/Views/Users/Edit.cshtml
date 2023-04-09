@@ -1,0 +1,55 @@
+﻿@model Forum.Models.User
+
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/assets/css/createUser.css">
+<div class="user-container">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()<div class="form-user" style="padding-top:50px;">
+                <h4>Chỉnh sửa thông tin tài khoản</h4>
+                <hr />
+                <div id="main-wrapper" class="container-edit">
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.id_user)
+                        @Html.HiddenFor(model => model.flag)
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        Tên tài khoản
+                        @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        <p> @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })</p>
+                    </div>
+                    <div class="form-group">
+                        Mật khẩu
+                        @Html.EditorFor(model => model.pass, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                        <p> @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })</p>
+                    </div>
+                    <div class="form-group">
+                        Tên người dùng
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        <P>@Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })</P>
+                    </div>
+                    <div class="formgroup">
+                        <div class="formgrp-isadmin">
+                            Role Admin
+                            <div class="row">
+                                @Html.EditorFor(model => model.role, new { htmlAttributes = new { @class = "form-control icon-checkbox" } })
+                                <span style="line-height: 45px; margin-left: 10px; font-size: medium; color:#ccc">Chọn là Admin, không chọn là người dùng</span>
+                            </div>
+                                <P> @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })</P>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Lưu chỉnh sửa" class="btn btn-success" />
+                    </div>
+                </div>
+                <div class="col-12 float-right btn-BackToList">
+                    @Html.ActionLink("Trở về trang trước", "Index", "", htmlAttributes: new { @class = "btn btn-secondary" })
+                </div>
+            </div>
+        }
+</div>

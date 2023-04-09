@@ -1,0 +1,70 @@
+﻿@model Forum.Models.RegisterUser
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/assets/css/profile/jquery-confirm.min.css">
+    <link rel="stylesheet" href="~/assets/css/profile/profile.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <title>Test</title>
+</head>
+<body>
+    @using (Html.BeginForm("Register", "Register", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+    <div class="wrapper">
+        <div class="logo">
+            <img src="https://img.icons8.com/clouds/344/heart-key.png">
+        </div>
+        <div class="text-center mt-4 name Maintitle">
+            Register
+        </div>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-user"></span>
+                @Html.Editor("name", new { htmlAttributes = new { @placeholder = "Name" } })
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                @Html.Editor("user_name", new { htmlAttributes = new { @placeholder = "UserName" } })
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                @Html.Editor("pass", new { htmlAttributes = new { @placeholder = "Password", @type = "password"} })
+                <span asp-validation-for="pass" class="text-danger"></span>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                @Html.PasswordFor(m => m.ConfirmPassword, new {@placeholder = "Confirm Password" })
+            </div>
+            @if (@TempData["ConfirmPass"] != null || @TempData["CheckInformation"] != null || @TempData["Login"] != null)
+            {
+        <div class="alert-danger">
+            @Html.Raw(TempData["Login"])
+            @Html.Raw(TempData["ConfirmPass"])
+            @Html.Raw(TempData["CheckInformation"])
+        </div>
+            }
+            <div><p id="validate-status"></p></div>
+            <div class="GroupButton">
+                <button class="btn mt-3 create">Sign Up</button>
+                <a class="btn mt-3 create cancel" href="/Home">Cancel</a>
+            </div>
+        </form>
+    </div>
+    }
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿@model Forum.Models.RegisterUser
+@{
+    ViewBag.Title = "Register";
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/assets/images/logo_forum.jpg" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/assets/css/profile/jquery-confirm.min.css">
+    <link rel="stylesheet" href="~/assets/css/profile/profile.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <title>Diễn đàn nông nghiệp</title>
+</head>
+<body>
+    @using (Html.BeginForm("Register", "Register", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+    <div class="wrapper">
+        <div class="logo">
+            <img src="~/assets/images/logo.png">
+        </div>
+        <div class="text-center mt-4 name Maintitle">
+            Đăng ký
+        </div>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-user"></span>
+                @Html.Editor("name", new { htmlAttributes = new { @placeholder = "Tên người dùng" } })
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                @Html.Editor("user_name", new { htmlAttributes = new { @placeholder = "Số điện thoại" } })
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                @Html.Editor("pass", new { htmlAttributes = new { @placeholder = "Mật khẩu", @type = "password" } })
+                <span asp-validation-for="pass" class="text-danger"></span>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Xác nhận mật khẩu" })
+            </div>
+            <div class="form-select">
+                <span class="fas fa-key"></span>
+                @Html.DropDownListFor(model => model.role_detail, new List<SelectListItem> {
+                        new SelectListItem { Text = "Nhà Khoa Học", Value = "Nhà khoa Học" },
+                        new SelectListItem { Text = "Nhà Doanh Nghiệp", Value = "Nhà Doanh Nghiệp" },
+                        new SelectListItem { Text = "Nhà Nông", Value = "Nhà Nông" }}, new { @class = "form-select form-field d-flex align-items-center" })
+            </div>
+            <div class="form-select form-mien">
+                <span class="fas fa-key"></span>
+                @Html.DropDownListFor(model => model.area, new List<SelectListItem> {
+                        new SelectListItem { Text = "Miền Bắc", Value = "Miền Bắcc" },
+                        new SelectListItem { Text = "Miền Trung", Value = "Miền Trung" },
+                        new SelectListItem { Text = "Miền Nam", Value = "Miền Nam" }}, new { @class = "form-select form-field d-flex align-items-center" })
+            </div>
+            @if (@TempData["ConfirmPass"] != null || @TempData["CheckInformation"] != null || @TempData["Login"] != null)
+            {
+                <div class="text-danger">
+                    <strong>@Html.Raw(TempData["CheckInformation"])</strong>
+                    <strong>@Html.Raw(TempData["ConfirmPass"])</strong>
+                    <strong>@Html.Raw(TempData["Login"])</strong>
+                </div>
+
+            }
+            <div><p id="validate-status"></p></div>
+            <div class="GroupButton">
+                <button class="btn mt-3 create">Đăng ký</button>
+                <a class="btn mt-3 create cancel" href="/Home">Hủy</a>
+            </div>
+        </form>
+    </div>
+    }
+
+</body>
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

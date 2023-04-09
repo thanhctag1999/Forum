@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Forum.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/assets/css/layout.css">
+
+<div class="container-admin-post">
+    <h2>Quản lý bài viết</h2>
+    <table class="table table-post">
+        <tr>
+            <th>
+                Chủ đề
+            </th>
+            <th>
+                Người đăng
+            </th>
+            <th>
+                Tên bài viết
+            </th>
+            <th>
+                Nội dung
+            </th>
+            <th>
+                Ngày đăng
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>Xử lý</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Topic.topic_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.post_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.content_post)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.created_at)
+                </td>
+                <td>
+                    @if (item.flag == "1")
+                    {
+
+                        <p style=" padding-top: 4px; margin-top: -7px; color: #019774">Đã duyệt</p>
+                    }
+                    else if (item.flag == "0")
+                    {
+                        
+                        <p style=" padding-top: 4px; margin-top: -7px; color: #efc808">Chưa duyệt</p>
+                    }
+                    else if (item.flag == "2")
+                    {
+                       
+                        <p style="padding-top: 4px; margin-top: -7px; color: #f71f1f">Từ chối</p>
+                    }
+
+
+                </td>
+                <td>
+                    @using (Html.BeginForm("Approve", "Posts", new { id = item.id_post }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <input type="submit" value="Cho phép" class="btn btn-default btn_approve" , new { onclick="return confirm('Approved!');" } />
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("Reject", "Posts", new { id = item.id_post }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <input type="submit" value="Từ chối" class="btn btn-default btn_reject" , new { onclick="return confirm('Are sure wants to Reject?');" } />
+
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

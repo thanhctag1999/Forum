@@ -1,0 +1,12 @@
+﻿#img_profile{
+    text-align: center;
+}
+#form-submit {
+    background: blue;
+    border-radius: 5px;
+}
+#cancel_edit_profile {
+    background: #ff4456 !important;
+    cursor: pointer;
+    border-radius: 5px;
+}

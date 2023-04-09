@@ -1,0 +1,91 @@
+﻿@model Forum.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Topic.topic_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Topic.topic_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.user_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.user_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User1.user_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.user_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User2.user_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User2.user_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.post_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.post_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content_post)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content_post)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_post }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
